@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Sparkles, Code2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Terminal, Sparkles, Code2, ChevronLeft, ChevronRight,LoaderCircle } from 'lucide-react';
 import api from "@/api/client";
 
 const Hero = ({ onJoinClick }) => {
@@ -105,9 +105,42 @@ const Hero = ({ onJoinClick }) => {
             {/* Carousel Section */}
             <div className="relative w-full max-w-6xl mx-auto mb-12">
                 {loading ? (
-                    <div className="h-[400px] flex items-center justify-center">
-                        <div className="text-white">Loading carousel...</div>
+                    // Beautiful Loader Component
+                    <div className="h-[400px] flex flex-col items-center justify-center">
+                    <div className="relative">
+                        {/* Outer rotating ring */}
+                        <div className="absolute inset-0 w-20 h-20 border-4 border-transparent border-t-primary/30 border-r-secondary/30 rounded-full animate-spin"></div>
+                        
+                        {/* Middle ring */}
+                        <div className="absolute inset-0 w-16 h-16 border-3 border-transparent border-b-secondary/50 border-l-primary/50 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+                        
+                        {/* Inner ring */}
+                        <div className="absolute inset-0 w-12 h-12 border-2 border-transparent border-t-primary border-r-secondary rounded-full animate-spin" style={{ animationDuration: '1s' }}></div>
+                        
+                        {/* Center icon with pulse effect */}
+                        <div className="relative w-20 h-20 flex items-center justify-center">
+                        <LoaderCircle className="w-8 h-8 text-primary animate-pulse" />
+                        
+                        {/* Glowing orb */}
+                        <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping" style={{ animationDuration: '2s' }}></div>
+                        </div>
                     </div>
+                    
+                    {/* Loading text with fade animation */}
+                    <div className="mt-8 text-center">
+                        <p className="text-gray-400 font-medium text-lg tracking-wide animate-pulse">Loading...</p>
+                        <div className="mt-4 flex justify-center gap-1">
+                        {[...Array(3)].map((_, i) => (
+                            <div 
+                            key={i}
+                            className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full animate-bounce"
+                            style={{ animationDelay: `${i * 0.1}s` }}
+                            ></div>
+                        ))}
+                        </div>
+                    </div>
+                    </div>
+                    
                 ) : (
                     <>
                         <div className="relative h-[400px] md:h-[500px] overflow-hidden rounded-2xl">

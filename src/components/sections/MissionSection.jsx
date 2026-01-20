@@ -49,7 +49,7 @@ const MissionSection = () => {
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-[80px] rotate-6 blur-2xl -z-10" />
                         <div className="w-full h-full glass rounded-[40px] border-white/20 flex items-center justify-center p-0 relative overflow-hidden">
                             <img
-                                src="/src/assets/office.png"
+                                src="office.png"
                                 alt="Company Image"
                                 className="w-full h-full object-fill rounded-[40px]"
                             />
